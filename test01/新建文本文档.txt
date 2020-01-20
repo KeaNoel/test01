@@ -1,0 +1,43 @@
+SELECT arecd1,arecd2,AVG(CAST(CAST(ai0 AS text)AS numeric))ai0,AVG(CAST(CAST(ai1 AS text)AS numeric))ai1,AVG(CAST(CAST(ai2 as text)AS numeric)ai2,
+			AVG(di0)di0,AVG(di1)di1,AVG(CAST(CAST(i2C0,AVG(CAST(CAST(i2c1 AS text)AS numeric))i2c1
+			FROM(
+			SELECT to_char(arecd1,?)arecd1,arecd2,arecd4->'ai0'AS ai0,arecd4->'ai2'AS ai2,arecd4 ->'i2c0'AS i2c0,arecd4->'i2c1'AS i2c1,
+			case when(arecd4 ->'di0status')='true'then 1 else 0 end AS di0,
+			case when(arecd4 ->'di1status')='true'then 1 else 0 end AS di1,
+			FROM ARECD WHERE arecd1 BETWEEN ? AND ? AND arecd2=?)A GROUP BY arecd1,arecd2 ORDER BY arecd1;
+
+
+
+
+
+
+
+
+
+
+
+SELECT 
+ CAST(arecd4->'ai0' AS CHARACTER(1000))as ai0,
+ CAST(arecd4->'di1' AS CHARACTER(100))as di1,
+ CAST(arecd4->'ai2' AS CHARACTER(100))as ai2,
+ CAST(arecd4->'di0status' AS CHARACTER(100))as di0status,
+ CAST(arecd4->'di1status' AS CHARACTER(100))as di1status,
+ CAST(arecd4->'i2c0' AS CHARACTER(100))as i2c0,
+ CAST(arecd4->'i2c1' AS CHARACTER(100))as i2c1
+ from arecd where arecd1 BETWEEN '2019-12-26 21:15:50.0'and '2019-12-26 21:15:50.0' and arecd2='235239';
+
+ SELECT arecd1,arecd2,AVG(CAST(CAST(ai0 AS text)AS numeric))ai0,AVG(CAST(CAST(ai1 AS text)AS numeric))ai1,AVG(CAST(CAST(ai2 as text)AS numeric))ai2,
+			AVG(di0)di0,AVG(di1)di1,AVG(CAST(CAST(i2C0,AVG(CAST(CAST(i2c1 AS text)AS numeric))i2c1
+			FROM(
+			SELECT to_char(arecd1,'YYYY-MM-DD')arecd1,arecd2,arecd4->'ai0'AS ai0,arecd4->'ai2'AS ai2,arecd4 ->'i2c0'AS i2c0,arecd4->'i2c1'AS i2c1,
+			case when(arecd4 ->'di0status')='true'then 1 else 0 end AS di0,
+			case when(arecd4 ->'di1status')='true'then 1 else 0 end AS di1,
+			FROM ARECD WHERE arecd1 BETWEEN '2019-12-25' AND '2019-12-26' AND arecd2='235239')A GROUP BY arecd1,arecd2 ORDER BY arecd1;
+
+
+
+
+
+
+
+
