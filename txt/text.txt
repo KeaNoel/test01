@@ -1,0 +1,36 @@
+<insert id="add" parameterType="com.lzw.Book.entity.Book">
+      INSERT INTO 
+       		book_table
+       		(id,bookName,Author,Numes,Price,Press) 
+       	VALUES
+       		(#{id}, #{bookName}, #{Author},#{Numes},#{Price},#{Press})
+    </insert>
+ 
+    <delete id="deleteByid" parameterType="int"  >
+       		delete from book_table where id = # {id}
+    </delete>
+ 
+    <select id="findAll" parameterType="com.lzw.Book.entity.Book" resultType="com.lzw.Book.entity.Book" >
+        SELECT * from book_table
+  		<where>
+  		 true
+  		 	<if test="bookName" != null and bookName !=''">
+  		 		  and bookName like #{bookName}
+  		 	</if>
+  		 	<if test="Author" != null and Author !=''">
+  		 		  and Author like #{Author}
+  		 	</if>
+  		 </where>
+    </select>
+ 
+    <update id="update" parameterType="com.lzw.Book.entity.Book" >
+       UPDATE book_table SET 
+      			id = #{id},
+      			bookName	= #{bookName},
+      			Author = #{Author},
+      			Numes = #{Numes},
+      			Price = #{Price},
+      			Press = #{Press},
+       WHERE 
+       		id = #{id}
+    </update> 

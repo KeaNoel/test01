@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- IOC和DI的注解扫描 -->
+    <context:component-scan base-package="com.Lzw.demo" ></context:component-scan>
+
+    <!-- 打开AOP的注解 -->
+    <!-- 这里用的是中间的横线而不是下划线 -->
+    <!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+
+    <!--第一步：配置数据源  -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+        <property name="jdbcUrl" value="jdbc:postgresql://192.168.1.216:5432/bookDB"></property>
+        <property name="driverClass" value="org.postgresql.Driver"></property>
+        <property name="user" value="postgres"></property>
+        <property name="password" value="ay0915ateam"></property>
+    </bean>
+
+    <!-- 第二步：将数据源设置JdbcTemplate模板中 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 第三步：在dao中注入JdbcTemplate模板 -->
+    <bean id="Book" class="com.Lzw.demo.dao.Book">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+    <!-- 第四步：在service中注入dao -->
+    <bean id="BookService" class="com.Lzw.demo.Impl.BookService">
+        <property name="Book" ref="Book"></property>
+    </bean>
+
+</beans>
+
